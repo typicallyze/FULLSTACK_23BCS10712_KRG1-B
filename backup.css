@@ -1,0 +1,169 @@
+.sel1 {
+    background-image:
+        /* Creates horizontal black bars (33px tall) with transparent gaps (2px tall) */
+        linear-gradient(black 33px, transparent 33px),
+        /* Creates vertical black bars (33px wide) with transparent gaps (2px wide) */
+        linear-gradient(to right, black 33px, transparent 33px);
+
+    /* The total size of one repeating tile is 33px box + 2px gap = 35px */
+    background-size: 35px 35px;
+
+    min-height: 500px;
+    min-width: 500px;
+}
+
+.sel2 {
+    border-width: 10px;
+    border-style: solid;
+    border-color: #000000;
+    background-color: black;
+    color: aqua;
+    min-height: 500px;
+    min-width: 500px;
+}
+
+.cursor-circle {
+    /* Position and size */
+    position: fixed;
+    /* Use fixed positioning */
+    width: 60px;
+    height: 60px;
+
+    /* Make it a circle */
+    /* border-radius: 50%; */
+
+    /* Style it */
+    /* border: 2px solid #333; */
+    background-color: rgb(104, 104, 104);
+
+    /* IMPORTANT: Center the circle on the cursor */
+    transform: translate(-50%, -50%);
+
+    /* IMPORTANT: Allow clicks to pass through the circle */
+    pointer-events: none;
+
+    /* Add a smooth transition for movement */
+    transition: top 0.01s linear, left 0.01s linear;
+    z-index: -1;
+}
+
+.grid {
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(45deg, #000000, #000000);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect x='5' y='5' width='50' height='50' fill='black'/%3E%3C/svg%3E");
+}
+
+
+.gridl {
+    /* background-color: rgb(18, 18, 18); */
+    width: 500px;
+    height: 500px;
+    background-image: linear-gradient(135deg, #000000, #000000);
+    --a: 78px;
+    --b: 80px;
+
+    mask:
+        repeating-linear-gradient(0deg,
+            black 0px, black var(--a),
+            transparent var(--a), transparent var(--b)),
+        repeating-linear-gradient(90deg,
+            black 0px, black var(--a),
+            transparent var(--a), transparent var(--b));
+    mask-composite: intersect;
+}
+
+.grid {
+    /*
+      Configuration:
+      Easily change the grid's appearance by adjusting these variables.
+    */
+    --line-thickness: 2px;
+    --square-size: 78px;
+    --square-color: #000;
+    --line-color: transparent;
+    /* The color of the grid squares */
+
+    /*
+      Calculated variable:
+      This determines the total size of one grid cell (square + line).
+    */
+    --grid-cell-size: calc(var(--square-size) + var(--line-thickness));
+
+    /* For demonstration, keeping the original fixed size.
+       For a responsive grid, you could use width: 100%; height: 100vh; */
+    width: 500px;
+    height: 500px;
+
+    position: fixed;
+
+    /* Use background-color for a solid color. It's more semantic and direct. */
+    background-color: var(--square-color);
+
+    /*
+      The mask creates the transparent grid lines by defining the solid
+      squares and cutting away everything else.
+    */
+    mask:
+        /* Defines horizontal solid bars that repeat vertically. */
+        repeating-linear-gradient(0deg,
+            /* Creates horizontal stripes */
+            #ff0000 0,
+            #ff0000 var(--square-size),
+            var(--line-color) var(--square-size),
+            var(--line-color) var(--grid-cell-size)),
+        /* Defines vertical solid bars that repeat horizontally. */
+        repeating-linear-gradient(90deg,
+            /* Creates vertical stripes */
+            #ff0000 0,
+            #ff0000 var(--square-size),
+            var(--line-color) var(--square-size),
+            var(--line-color) var(--grid-cell-size));
+
+    /*
+      'intersect' ensures that only the areas where BOTH masks are solid
+      (the squares) remain visible. The lines, which are transparent in one
+      of the two mask layers, get cut out, revealing what's behind the element.
+    */
+    -webkit-mask-composite: intersect;
+    /* For Safari/Chrome */
+    mask-composite: intersect;
+}
+
+
+.cursor-circle {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+    filter: blur(50px);
+
+    background-color: rgb(130, 130, 130);
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+
+    transition: top 0.01s linear, left 0.01s linear;
+
+}
+
+body {
+    margin: 0;
+
+    min-height: 100vh;
+
+
+    --a: 78px;
+    --b: 80px;
+
+    mask:
+        repeating-linear-gradient(0deg,
+            black 0px, black var(--a),
+            transparent var(--a), transparent var(--b)),
+        repeating-linear-gradient(90deg,
+            black 0px, black var(--a),
+            transparent var(--a), transparent var(--b));
+    mask-composite: intersect;
+}
