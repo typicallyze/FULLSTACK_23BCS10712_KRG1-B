@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Product Filter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Our Products</h1>
+            <p>Use the filter to see products by category.</p>
+        </header>
+
+        <!-- Filter Controls -->
+        <div class="filter-controls">
+            <label for="category-filter">Filter by Category:</label>
+            <select id="category-filter">
+                <option value="all">All</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Apparel">Apparel</option>
+                <option value="Home Goods">Home Goods</option>
+            </select>
+        </div>
+
+        <!-- Visual Feedback for User -->
+        <div id="filter-feedback" class="feedback">
+            <!-- This will be updated by JavaScript -->
+        </div>
+
+        <!-- Product Display Area -->
+        <div id="product-list" class="product-grid">
+            <!-- Product cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

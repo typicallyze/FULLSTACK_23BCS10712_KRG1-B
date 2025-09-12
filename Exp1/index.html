@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <header class="header">
+            <div class="header__left">
+                <button id="menu-toggle" class="menu-toggle">
+                    &#9776;
+                </button>
+                <h1>Dashboard</h1>
+            </div>
+            <div class="header__right">
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </header>
+
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#">&#128202; Dashboard</a></li>
+                    <li><a href="#">&#128100; Users</a></li>
+                    <li><a href="#">&#128203; Analytics</a></li>
+                    <li><a href="#">&#128178; Sales</a></li>
+                    <li><a href="#">&#9881; Settings</a></li>
+                    <li><a href="#">&#128682; Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <h2>Welcome, Admin!</h2>
+
+            <div class="stats-cards">
+                <div class="card">
+                    <h3>Revenue</h3>
+                    <p>$45,890</p>
+                    <div class="card-placeholder-bar"></div>
+                </div>
+                <div class="card">
+                    <h3>New Users</h3>
+                    <p>1,234</p>
+                    <div class="card-placeholder-bar"></div>
+                </div>
+                <div class="card">
+                    <h3>Orders</h3>
+                    <p>6,789</p>
+                    <div class="card-placeholder-bar"></div>
+                </div>
+                <div class="card">
+                    <h3>CTR</h3>
+                    <p>2.5%</p>
+                    <div class="card-placeholder-bar"></div>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="card chart">
+                    <h3>Sales Over Time</h3>
+                    <div class="chart-placeholder">
+                        <p>Chart Placeholder</p>
+                    </div>
+                </div>
+                <div class="card chart">
+                    <h3>User Demographics</h3>
+                    <div class="chart-placeholder">
+                        <p>Pie Chart Placeholder</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2023 Admin Dashboard. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
