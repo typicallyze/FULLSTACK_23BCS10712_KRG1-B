@@ -1,0 +1,8 @@
+Q1
+Create a responsive navigation bar using html and css it should include home, about, contact links and on smaller screens collapse 
+the links into a hameburger icon.
+
+
+Q2
+Explain the role of an entity and how it maps to a database table. Create a simple entity class named employee 
+with fields id, name, email, salary and anotate it using JPA annotations.

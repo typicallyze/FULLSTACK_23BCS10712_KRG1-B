@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Drawing Tool</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding-top: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .controls {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    label {
+      font-weight: 500;
+    }
+    input[type="color"] {
+      border: none;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #drawing-area {
+      border: 2px solid #ccc;
+      background-color: #ffffff;
+      cursor: crosshair;
+      touch-action: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎨 SVG Drawing Pad</h1>
+
+  <div class="controls">
+    <label for="colorPicker">Color:</label>
+    <input type="color" id="colorPicker" value="#ff0000">
+    <button id="undoButton">Undo</button>
+  </div>
+
+  <svg id="drawing-area" width="800" height="600"></svg>
+
+  <script>
+    const svgArea = document.getElementById('drawing-area');
+    const colorPicker = document.getElementById('colorPicker');
+    const undoButton = document.getElementById('undoButton');
+    
+    const svgNamespace = "http://www.w3.org/2000/svg";
+    let isDrawing = false;
+    let history = [];
+
+    const getMousePosition = (event) => {
+      const CTM = svgArea.getScreenCTM();
+      return {
+        x: (event.clientX - CTM.e) / CTM.a,
+        y: (event.clientY - CTM.f) / CTM.d
+      };
+    };
+
+    const startDrawing = (event) => {
+      isDrawing = true;
+      draw(event);
+    };
+
+    const stopDrawing = () => {
+      isDrawing = false;
+    };
+
+    const draw = (event) => {
+      if (!isDrawing) return;
+      event.preventDefault();
+
+      const pos = getMousePosition(event);
+      const circle = document.createElementNS(svgNamespace, 'circle');
+      
+      circle.setAttribute('cx', pos.x);
+      circle.setAttribute('cy', pos.y);
+      circle.setAttribute('r', '5');
+      circle.setAttribute('fill', colorPicker.value);
+
+      svgArea.appendChild(circle);
+      history.push(circle);
+    };
+
+    const undoLastAction = () => {
+      if (history.length > 0) {
+        const lastElement = history.pop();
+        svgArea.removeChild(lastElement);
+      }
+    };
+
+    svgArea.addEventListener('mousedown', startDrawing);
+    svgArea.addEventListener('mouseup', stopDrawing);
+    svgArea.addEventListener('mousemove', draw);
+    svgArea.addEventListener('mouseleave', stopDrawing);
+    
+    undoButton.addEventListener('click', undoLastAction);
+  </script>
+
+</body>
+</html>
